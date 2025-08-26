@@ -18,7 +18,7 @@ Then, enter the folder of the package you want to install.
 Lastly, run:
 
 ```sh
-(dkp-)makepkg -fcsi
+makepkg -fcsi
 ```
 
 to install the package.
