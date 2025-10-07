@@ -1,6 +1,6 @@
 FROM archlinux:latest
 
-RUN pacman -Syu --noconfirm && pacman -S --noconfirm git wget base-devel unzip tar clang ripgrep
+RUN pacman -Syu --noconfirm && pacman -S --noconfirm git wget base-devel unzip tar clang lld
 
 # PacBew Official Packages
 RUN echo "[pacbrew]" >> /etc/pacman.conf \
