@@ -1,6 +1,6 @@
 FROM archlinux:latest
 
-RUN pacman -Syu --noconfirm && pacman -S --noconfirm git wget base-devel unzip tar clang lld
+RUN pacman -Syu --noconfirm && pacman -S --noconfirm git wget base-devel unzip tar clang lld openssl-1.1 go
 
 # PacBew Official Packages
 RUN echo "[pacbrew]" >> /etc/pacman.conf \
@@ -19,6 +19,10 @@ RUN wget https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/download/
 # Remove OpenOrbis Portlibs to prevent PacBrew Conflicts
 RUN rm /opt/openorbis/lib/libSDL2.a /opt/openorbis/lib/libSDL2main.a /opt/openorbis/lib/libSDL2_image.a
 
+# Newer create-gp4
+RUN git clone https://github.com/OpenOrbis/create-gp4.git && cd create-gp4/cmd/create-gp4 && go build -o /opt/openorbis/bin/linux/create-gp4 && cd / && rm -r create-gp4
+
 # Environment Variables
 ENV PACBREW=/opt/pacbrew
 ENV OO_PS4_TOOLCHAIN=/opt/openorbis
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
